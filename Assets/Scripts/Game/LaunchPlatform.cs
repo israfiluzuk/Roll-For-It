@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class LaunchPlatform : MonoBehaviour
 {
     public GameObject powerBarGO;
+    public GameObject powerBarGOBG;
     public Image PowerBarMask;
     public float barChangeSpeed = 1;
     float maxPowerBarValue = 50;
     float currentPowerBarValue;
     bool powerIsIncreasing;
-    bool PowerBarON;
+    public bool PowerBarON;
+    public float Fill;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,8 +45,8 @@ public class LaunchPlatform : MonoBehaviour
                 }
             }
 
-            float fill = currentPowerBarValue / maxPowerBarValue;
-            PowerBarMask.fillAmount = fill;
+            Fill = currentPowerBarValue / maxPowerBarValue;
+            PowerBarMask.fillAmount = Fill;
             yield return new WaitForSeconds(0.02f);
 
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -52,19 +54,22 @@ public class LaunchPlatform : MonoBehaviour
                 PowerBarON = false;
                 LaunchRocket();
                 StartCoroutine(TurnOffPowerBar());
-                print(fill);
+                print(Fill);
             }
         }
         yield return null;
     }
-    IEnumerator TurnOffPowerBar()
+    public IEnumerator TurnOffPowerBar()
     {
         yield return new WaitForSeconds(3f);
         powerBarGO.transform.DOScale(1.1f, .1f);
+        powerBarGOBG.transform.DOScale(1.1f, .1f);
         yield return new WaitForSeconds(.1f);
         powerBarGO.transform.DOScale(0,.3f);
-        yield return new WaitForSeconds(.4f);
+        powerBarGOBG.transform.DOScale(0,.3f);
         powerBarGO.SetActive(false);
+        powerBarGOBG.SetActive(false);
+        yield return new WaitForSeconds(.4f);
     }
 
     public void LaunchRocket()

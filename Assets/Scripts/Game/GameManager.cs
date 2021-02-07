@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform manPlayer, womanPlayer,playingPosition,stayingPosition,camZoomPos1;
     [SerializeField] Transform canPos0, canPos1, canPos2, canPos3, canPos4, canPos5;
     [SerializeField] Button smashButton;
+    [SerializeField] LaunchPlatform launchPlatform;
 
     Quaternion vector = Quaternion.identity;
 
@@ -86,6 +87,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(Pushing(1));
+            launchPlatform.PowerBarON = false;
+            launchPlatform.LaunchRocket();
+            launchPlatform.StartCoroutine(launchPlatform.TurnOffPowerBar());
+            print(launchPlatform.Fill);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
