@@ -21,8 +21,4 @@ public class PlayerTwo : Human
         PlayAnim(AnimationType.StandingWoman,0.5f);
     }
 
-    internal void Sad()
-    {
-        PlayAnim(AnimationType.Sad);
-    }
 }

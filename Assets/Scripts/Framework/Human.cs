@@ -30,4 +30,14 @@ public class Human : Animations
         PlayAnim(AnimationType.Happy);
     }
 
+    internal IEnumerator Sad()
+    {
+        PlayAnim(AnimationType.Sad);
+        yield return new WaitForSeconds(.5f);
+    }
+    internal IEnumerator Cry()
+    {
+        PlayAnim(AnimationType.Cry);
+        yield return new WaitForSeconds(.5f);
+    }
 }

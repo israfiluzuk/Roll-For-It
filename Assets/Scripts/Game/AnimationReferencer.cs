@@ -13,7 +13,8 @@ public enum AnimationType
     Jumping,
     Sad,
     Happy,
-    Victory
+    Victory,
+    Cry
 }
 
 public class AnimationReferencer : LocalSingleton<AnimationReferencer>
